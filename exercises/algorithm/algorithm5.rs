@@ -3,7 +3,6 @@
 	This problem requires you to implement a basic BFS algorithm
 */
 
-//I AM NOT DONE
 use std::collections::VecDeque;
 
 // Define a graph
@@ -27,10 +26,19 @@ impl Graph {
 
     // Perform a breadth-first search on the graph, return the order of visited nodes
     fn bfs_with_return(&self, start: usize) -> Vec<usize> {
-        
-		//TODO
-
         let mut visit_order = vec![];
+        visit_order.push(start);
+
+        for i in 0..self.adj.len() {
+            let adjs = &self.adj[visit_order[i]]; {
+                for j in adjs {
+                    if !visit_order.contains(j) {
+                        visit_order.push(*j);
+                    }
+                }
+            }
+        }
+
         visit_order
     }
 }
